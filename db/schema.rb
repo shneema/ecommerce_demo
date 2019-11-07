@@ -10,12 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_06_131852) do
+ActiveRecord::Schema.define(version: 2019_11_07_090843) do
 
   create_table "addresses", force: :cascade do |t|
-    t.string "country"
-    t.string "state"
-    t.string "city"
     t.integer "pincode"
     t.string "apartment_name"
     t.string "landmark"
@@ -23,7 +20,30 @@ ActiveRecord::Schema.define(version: 2019_11_06_131852) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
+    t.integer "city"
+    t.integer "state"
+    t.integer "country"
     t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.string "image"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.decimal "price"
+    t.integer "status"
+    t.integer "quantity"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -42,4 +62,5 @@ ActiveRecord::Schema.define(version: 2019_11_06_131852) do
   end
 
   add_foreign_key "addresses", "users"
+  add_foreign_key "products", "categories"
 end

@@ -1,24 +1,36 @@
 class AddressesController < ApplicationController
+  
+  before_action :find_address, only: [:show, :destroy]
+
   def new
-    @address = Address.new
+    @user = User.find(params[:user_id])
+    @address = @user.addresses.build
   end
 
 	def create
     @user = User.find(params[:user_id])
-    @address = @user.addresses.create(address_params)
-    redirect_to article_path(@article)
+    @address = @user.addresses.build(address_params)
+    if @address.save
+      redirect_to address_path(@address)       
+    else
+      render :new
+    end  
   end
 
+  def show
+  end  
+
   def destroy
-    @address = Address.find(params[:id])
-    # @address = @comment.article_id 
     @address.destroy
-    # redirect_to article_path(@article)
   end
 
   private
-    def comment_params
-      params.require(:address).permit(:user_id, :country, :state, :city, :pincode, :apartment_name, :landmark, :street )
+    
+    def find_address 
+      @address = Address.find(params[:id])
+    end
+
+    def address_params
+      params.require(:address).permit(:country, :state, :city, :pincode, :apartment_name, :landmark, :street)
     end
 end
-

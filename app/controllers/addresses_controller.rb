@@ -3,13 +3,11 @@ class AddressesController < ApplicationController
   before_action :find_address, only: [:show, :destroy]
 
   def new
-    @user = User.find(params[:user_id])
-    @address = @user.addresses.build
+    @address = Address.new
   end
 
-	def create
-    @user = User.find(params[:user_id])
-    @address = @user.addresses.build(address_params)
+	def create 
+    @address = Address.new(address_params)
     if @address.save
       redirect_to address_path(@address)       
     else
@@ -31,6 +29,6 @@ class AddressesController < ApplicationController
     end
 
     def address_params
-      params.require(:address).permit(:country, :state, :city, :pincode, :apartment_name, :landmark, :street)
+      params.require(:address).permit(:user_id, :country, :state, :city, :pincode, :address1, :address2)
     end
 end

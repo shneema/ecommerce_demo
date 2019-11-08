@@ -10,19 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_07_090843) do
+ActiveRecord::Schema.define(version: 2019_11_08_062023) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "pincode"
-    t.string "apartment_name"
-    t.string "landmark"
-    t.string "street"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.integer "city"
     t.integer "state"
     t.integer "country"
+    t.string "address1"
+    t.string "address2"
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 

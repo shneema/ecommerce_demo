@@ -1,2 +1,19 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<% if current_user.present?%>
+<div class="container main">
+  <div class="card shadow-sm p-3">
+    <div class="card-body">
+    	<dl class="dl-horizontal">
+    		
+				<dt>Name</dt>
+				<dd><%= current_user.name %></dd>
+				<dt>Email</dt>
+				<dd><%= current_user.email %></dd>
+				<dt>Role</dt>
+				<dd><%= current_user.role %></dd>
+				<%= link_to 'Add Address', new_address_path(current_user.id), class: "btn btn-primary", method: :get %>
+      </dl>
+    </div>
+  </div>
+</div>  
+<% end %>                         
+

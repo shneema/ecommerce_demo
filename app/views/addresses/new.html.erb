@@ -2,38 +2,33 @@
 <div class="container main-form">
   <div class="card shadow-sm p-3">
     <div class="card-body">
-      <%= form_for [@user, @address], local: true do |form| %>
-        
+      <%= form_for @address, local: true do |form| %>
+        <%= form.hidden_field :user_id, value: current_user.id %>
         <div class="form-group">
-          <%= form.label :pincode, for: "pincode" %><br>
-          <%= form.text_field :pincode, class: "form-control" %>
-        </div>
-       
-        <div class="form-group">
-          <%= form.label :landmark, for: "landmark" %><br>
-          <%= form.text_field :landmark, class: "form-control" %>
+          <%= form.label :address1, for: "address1" %><br>
+          <%= form.text_field :address1, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= form.label :street, for: "street" %><br>
-          <%= form.text_field :street, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= form.label :apartment_name, for: "apartment_name" %><br>
-          <%= form.text_field :apartment_name, class: "form-control" %>
+          <%= form.label :address2, for: "address2" %><br>
+          <%= form.text_field :address2, class: "form-control" %>
         </div>
          
         <div class="form-group">
-          <%= form.select :country, collection: Address.countries.keys.to_a, class: "custom-select" %>
+          <%= form.select(:country, Address.countries.keys.to_a, {}, { class: "custom-select" })%>
         </div>
 
         <div class="form-group">
-          <%= form.select :state, collection: Address.states.keys.to_a, class: "custom-select" %>
+          <%= form.select(:state, Address.states.keys.to_a, {},  { class: "custom-select" }) %>
         </div>
 
         <div class="form-group">
-          <%= form.select :city, collection: Address.cities.keys.to_a, class: "custom-select" %>
+          <%= form.select(:city, Address.cities.keys.to_a, {}, { class: 'custom-select' }) %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :pincode, for: "pincode" %><br>
+          <%= form.text_field :pincode, class: "form-control" %>
         </div>
 
         <div class="form-group">
@@ -44,7 +39,4 @@
     </div>  
   </div>
 </div>    
-
-
-
 <%# form_for([@post, @comment]) do |f| %>

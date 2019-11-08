@@ -1,27 +1,28 @@
-<p>
-	<%= @address.country %>
-</p>
+<h2 class="head"> Address </h2>
+<div class="container main-form">
+  <div class="card shadow-sm p-3">
+    <div class="card-body">
+    	<dl class="dl-horizontal">
+    		<dt>Address1</dt>
+    		<dd><%= @address.address1 %></dd>
 
-<p>
-	<%= @address.state %>
-</p>
+				<dt>Address2</dt>
+    		<dd><%= @address.address2 %></dd>
 
-<p>
-	<%= @address.city %>
-</p>
+        <dt>Country</dt>
+    		<dd><%= @address.country %></dd>
 
-<p>
-  <%= @address.pincode %>
-</p>
+    		<dt>State</dt>
+    		<dd><%= @address.state %></dd>
 
-<p>
-  <%= @address.apartment_name %>
-</p>
+    		<dt>City</dt>
+    		<dd><%= @address.city %></dd>
 
-<p>
-  <%= @address.landmark %>
-</p>
-
-<p>
-  <%= @address.street %>
-</p>
+    		<dt>Pincode</dt>
+    		<dd><%= @address.pincode %></dd>
+        
+        <%= link_to 'Back', root_path, class: "btn btn-primary", method: :get %>
+			</dl>	
+		</div>
+	</div>
+</div>
